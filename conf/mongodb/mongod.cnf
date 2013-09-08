@@ -1,0 +1,8 @@
+rest = true
+port = 27017
+dbpath = /home/worker/data/mongod/
+logpath = /home/worker/data/mongod/mongod.log
+logappend = true
+pidfilepath = /home/worker/data/mongod/mongod.pid
+fork = true
+oplogSize = 10240

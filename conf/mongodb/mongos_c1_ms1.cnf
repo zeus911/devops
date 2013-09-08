@@ -1,0 +1,6 @@
+port = 27191
+logpath = /home/worker/data/mongos-c1-ms1/mongos.log
+logappend = true
+pidfilepath = /home/worker/data/mongos-c1-ms1/mongos.pid
+fork = true
+configdb = localhost:27101,localhost:27102,localhost:27103

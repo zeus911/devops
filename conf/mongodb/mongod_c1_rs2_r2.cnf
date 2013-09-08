@@ -1,0 +1,9 @@
+rest = true
+port = 27122
+dbpath = /home/worker/data/mongod-c1-rs2-r2/
+logpath = /home/worker/data/mongod-c1-rs2-r2/mongod.log
+logappend = true
+pidfilepath = /home/worker/data/mongod-c1-rs2-r2/mongod.pid
+fork = true
+oplogSize = 10240
+replSet = rs2

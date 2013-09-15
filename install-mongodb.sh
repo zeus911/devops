@@ -39,10 +39,4 @@ ln -sf ../mongodb/bin/mongo mongo
 
 cd $INSTALL_DIR
 mkdir -p $DATA_DIR
-if [ -f /usr/bin/numactl ]
-then
-  /usr/bin/numactl –interleave=all bin/mongod -f conf/mongod.cnf
-else
-  bin/mongod -f conf/mongod.cnf
-fi
-sudo echo 0 > /proc/sys/vm/zone_reclaim_mode
+bin/mongod -f conf/mongod.cnf

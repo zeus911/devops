@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+BASE_DIR=`pwd`
+SCRIPT_DIR=$(readlink -e $(dirname $0))
+
 if [ $# -gt 0 ]
 then
   VERSION=$1
@@ -28,11 +31,13 @@ cd $PHP_DIR
 ./configure --prefix=$INSTALL_DIR --with-libdir=lib64 --enable-fpm --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-pdo-odbc=unixODBC,/usr --with-gd --with-jpeg-dir --with-png-dir --with-zlib-dir --with-freetype-dir --enable-gd-native-ttf --with-zlib --with-bz2 --with-openssl --with-curl --with-mcrypt --with-mhash --enable-zip --enable-exif --enable-ftp --enable-mbstring --enable-bcmath --enable-pcntl --enable-soap --enable-sockets --enable-sysvmsg --enable-sysvsem --enable-sysvshm --with-gettext --with-xsl --enable-wddx --with-libexpat-dir --with-xmlrpc
 make
 make install
-cp ../conf/php/php.ini $INSTALL_DIR/lib/
+
+cd $SCRIPT_DIR
+cp conf/php/php.ini $INSTALL_DIR/lib/
 sed -i "s%\$HOME%$HOME%g" $INSTALL_DIR/lib/php.ini
-cp ../conf/php/php-fpm.conf $INSTALL_DIR/etc/
+cp conf/php/php-fpm.conf $INSTALL_DIR/etc/
 sed -i "s%\$HOME%$HOME%g" $INSTALL_DIR/etc/php-fpm.conf
-cp ../conf/php/browscap.ini $INSTALL_DIR/etc/
+cp conf/php/browscap.ini $INSTALL_DIR/etc/
 mkdir $INSTALL_DIR/tmp
 mkdir -p $DATA_DIR/log
 mkdir -p $DATA_DIR/run

@@ -43,4 +43,4 @@ sed -i "s%\$USER%$USER%g" $INSTALL_DIR/conf/nginx.conf
 
 mkdir -p $HOME/data/nginx/logs
 cd $INSTALL_DIR
-sbin/nginx
+sudo sbin/nginx

@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+BASE_DIR=`pwd`
+SCRIPT_DIR=$(readlink -e $(dirname $0))
+
 if [ $# -gt 0 ]
 then
   VERSION=$1
@@ -29,15 +32,17 @@ cd $ZABBIX_DIR
 ./configure --prefix=$INSTALL_DIR --enable-agent --enable-ipv6 --with-libcurl
 make
 make install
-cp ../conf/zabbix/etc/* $INSTALL_DIR/etc/
+
+cd $SCRIPT_DIR
+cp conf/zabbix/etc/* $INSTALL_DIR/etc/
 sed -i "s%\$HOME%$HOME%g" $INSTALL_DIR/etc/zabbix_agentd.conf
 sed -i "s%\$HOME%$HOME%g" $INSTALL_DIR/etc/zabbix_server.conf
 sed -i "s/Server=zabbix-server/Server=zabbixserver.camera360.com/" $INSTALL_DIR/etc/zabbix_server.conf
 sed -i "s/ServerActiv=zabbix-server/ServerActiv=zabbixserver.camera360.com/" $INSTALL_DIR/etc/zabbix_server.conf
 mkdir -p $INSTALL_DIR/share/zabbix/externalscripts/
-cp ../conf/zabbix/externalscripts/* $INSTALL_DIR/share/zabbix/externalscripts/
+cp conf/zabbix/externalscripts/* $INSTALL_DIR/share/zabbix/externalscripts/
 mkdir -p $INSTALL_DIR/share/zabbix/alertscripts/
-cp ../conf/zabbix/alertscripts/* $INSTALL_DIR/share/zabbix/alertscripts/
+cp conf/zabbix/alertscripts/* $INSTALL_DIR/share/zabbix/alertscripts/
 :<<BLOCK
 $HOME/mysql/bin/mysql -u root -e "create database zabbix character set utf8;"
 $HOME/mysql/bin/mysql -u root -e "grant all on zabbix.* to 'zabbix'@'localhost';"

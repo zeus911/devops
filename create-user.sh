@@ -14,4 +14,4 @@ passwd $USERNAME
 
 # config sudo
 sed -i "/NOPASSWD/a\\$USERNAME ALL=(ALL)       NOPASSWD: ALL" /etc/sudoers
-sed -i "s/Defaults    requiretty/Defaults:$USERNAME \!requiretty/" /etc/sudoers
+# sed -i "s/Defaults    requiretty/Defaults:$USERNAME \!requiretty/" /etc/sudoers

@@ -15,7 +15,7 @@ then
   wget http://www.python.org/ftp/python/$VERSION/$PYTHON_SRC
 fi
 
-sudo yum -y install readline readline-devel openssl openssl-devel bzip2-devel mysql-devel libcurl libcurl-devel
+sudo yum -y install readline readline-devel openssl openssl-devel bzip2-devel mysql mysql-devel libcurl libcurl-devel
 
 if [ -d $PYTHON_DIR ]
 then

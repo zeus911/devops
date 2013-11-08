@@ -15,14 +15,14 @@ DATA_DIR=$HOME/data/rabbitmq
 
 wget http://packages.erlang-solutions.com/erlang-solutions-$ERLANG_VERSION.noarch.rpm
 sudo rpm -Uvh erlang-solutions-$ERLANG_VERSION.noarch.rpm
-sudo yum install erlang
+sudo yum -y install erlang
 
 if [ ! -f $RABBITMQ_SRC ]
 then
     wget "http://www.rabbitmq.com/releases/rabbitmq-server/v3.2.0/$RABBITMQ_SRC"
 fi
 sudo rpm --import http://www.rabbitmq.com/rabbitmq-signing-key-public.asc
-sudo yum install $RABBITMQ_SRC
+sudo yum -y install $RABBITMQ_SRC
 
 sudo chkconfig rabbitmq-server on
 sudo /sbin/service rabbitmq-server start

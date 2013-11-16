@@ -7,7 +7,7 @@ if [ $# -gt 0 ]
 then
   VERSION=$1
 else
-  VERSION=5.3.25
+  VERSION=5.5.6
 fi
 PHP_SRC=php-$VERSION.tar.gz
 PHP_DIR=${PHP_SRC%.tar.gz}
@@ -15,12 +15,12 @@ INSTALL_DIR=$HOME/php
 DATA_DIR=$HOME/data/php
 BASE_DIR=`pwd`
 
-sudo yum -y install gd gd-devel libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel openssl openssl-devel libtool-ltdl libtool-ltdl-devel libxml2 libxml2-devel zlib zlib-devel bzip2 bzip2-devel curl curl-devel gettext gettext-devel libevent libevent-devel libxslt libxslt-devel expat expat-devel libmcrypt libmcrypt-devel
+sudo yum -y install gd gd-devel libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel openssl openssl-devel libtool-ltdl libtool-ltdl-devel libxml2 libxml2-devel zlib zlib-devel bzip2 bzip2-devel curl curl-devel gettext gettext-devel libevent libevent-devel libxslt libxslt-devel expat expat-devel
 
 cd $BASE_DIR
 if [ ! -f $PHP_SRC ]
 then
-  wget "http://www.php.net/get/$PHP_SRC/from/cn2.php.net/mirror"
+  wget "http://www.php.net/get/$PHP_SRC/from/www.php.net/mirror"
 fi
 if [ -d $PHP_DIR ]
 then
@@ -28,7 +28,7 @@ then
 fi
 tar zxf $PHP_SRC
 cd $PHP_DIR
-./configure --prefix=$INSTALL_DIR --with-libdir=lib64 --enable-fpm --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-pdo-odbc=unixODBC,/usr --with-gd --with-jpeg-dir --with-png-dir --with-zlib-dir --with-freetype-dir --enable-gd-native-ttf --with-zlib --with-bz2 --with-openssl --with-curl --with-mcrypt --with-mhash --enable-zip --enable-exif --enable-ftp --enable-mbstring --enable-bcmath --enable-pcntl --enable-soap --enable-sockets --enable-sysvmsg --enable-sysvsem --enable-sysvshm --with-gettext --with-xsl --enable-wddx --with-libexpat-dir --with-xmlrpc
+./configure --prefix=$INSTALL_DIR --enable-fpm --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-gd --with-jpeg-dir --with-png-dir --with-zlib-dir --with-freetype-dir --enable-gd-native-ttf --with-zlib --with-bz2 --with-openssl --with-curl --with-mhash --enable-zip --enable-exif --enable-ftp --enable-mbstring --enable-bcmath --enable-pcntl --enable-soap --enable-sockets --enable-sysvmsg --enable-sysvsem --enable-sysvshm --with-gettext --with-xsl --with-xmlrpc
 make
 make install
 
@@ -38,6 +38,7 @@ sed -i "s%\$HOME%$HOME%g" $INSTALL_DIR/lib/php.ini
 cp conf/php/php-fpm.conf $INSTALL_DIR/etc/
 sed -i "s%\$HOME%$HOME%g" $INSTALL_DIR/etc/php-fpm.conf
 cp conf/php/browscap.ini $INSTALL_DIR/etc/
+cp scripts/php-fpm.sh $INSTALL_DIR/sbin
 mkdir $INSTALL_DIR/tmp
 mkdir -p $DATA_DIR/log
 mkdir -p $DATA_DIR/run
@@ -61,6 +62,5 @@ bin/pecl install mongo
 bin/pecl install xdebug
 bin/pecl install xhprof-beta
 
-cp ../scripts/php-fpm.sh $HOME/php/sbin
-chmod +x $HOME/php/sbin/php-fpm.sh
-$HOME/php/sbin/php-fpm.sh start
+cd $INSTALL_DIR
+sbin/php-fpm.sh start

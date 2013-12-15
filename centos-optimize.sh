@@ -20,10 +20,10 @@ yum -y install sysstat nc wget telnet
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 # set system limits
-sed -i "/# End of file/i\\* soft nofile 65536" /etc/security/limits.conf
-sed -i "/# End of file/i\\* hard nofile 65536" /etc/security/limits.conf
-sed -i "/# End of file/i\\* soft nproc 10240" /etc/security/limits.conf
-sed -i "/# End of file/i\\* hard nproc 10240" /etc/security/limits.conf
+sed -i "/# End of file/i\\* soft nofile 64000" /etc/security/limits.conf
+sed -i "/# End of file/i\\* hard nofile 64000" /etc/security/limits.conf
+sed -i "/# End of file/i\\* soft nproc 32000" /etc/security/limits.conf
+sed -i "/# End of file/i\\* hard nproc 32000" /etc/security/limits.conf
 sed -i "s/^\(*          soft    nproc     1024\)/#\1/" /etc/security/limits.d/90-nproc.conf
 
 # config system params

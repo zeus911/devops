@@ -7,7 +7,7 @@ if [ $# -gt 0 ]
 then
   VERSION=$1
 else
-  VERSION=2.6.16
+  VERSION=2.8.1
 fi
 REDIS_SRC=redis-$VERSION.tar.gz
 REDIS_DIR=${REDIS_SRC%.tar.gz}

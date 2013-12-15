@@ -7,7 +7,7 @@ if [ $# -gt 0 ]
 then
   VERSION=$1
 else
-  VERSION=1.4.2
+  VERSION=1.4.4
 fi
 INSTALL_DIR=$HOME/nginx
 

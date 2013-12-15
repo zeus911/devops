@@ -7,7 +7,7 @@ if [ $# -gt 0 ]
 then
   VERSION=$1
 else
-  VERSION=3.2.0-1
+  VERSION=3.2.1-1
 fi
 RABBITMQ_SRC=rabbitmq-server-$VERSION.noarch.rpm
 ERLANG_VERSION=1.0-1
@@ -19,7 +19,7 @@ sudo yum -y install erlang
 
 if [ ! -f $RABBITMQ_SRC ]
 then
-    wget "http://www.rabbitmq.com/releases/rabbitmq-server/v3.2.0/$RABBITMQ_SRC"
+    wget "http://www.rabbitmq.com/releases/rabbitmq-server/v${VERSION%-*}/$RABBITMQ_SRC"
 fi
 sudo rpm --import http://www.rabbitmq.com/rabbitmq-signing-key-public.asc
 sudo yum -y install $RABBITMQ_SRC

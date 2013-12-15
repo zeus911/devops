@@ -7,7 +7,7 @@ if [ $# -gt 0 ]
 then
   VERSION=$1
 else
-  VERSION=5.6.13
+  VERSION=5.6.14
 fi
 MYSQL_SRC=mysql-$VERSION-linux-glibc2.5-x86_64.tar.gz
 MYSQL_DIR=${MYSQL_SRC%.tar.gz}

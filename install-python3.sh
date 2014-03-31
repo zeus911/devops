@@ -4,11 +4,11 @@ if [ $# -gt 0 ]
 then
   VERSION=$1
 else
-  VERSION=2.7.6
+  VERSION=3.3.5
 fi
 PYTHON_SRC=Python-$VERSION.tgz
 PYTHON_DIR=${PYTHON_SRC%.tgz}
-INSTALL_DIR=$HOME/python
+INSTALL_DIR=$HOME/python3
 
 if [ ! -f $PYTHON_SRC ]
 then
@@ -28,11 +28,10 @@ cd $PYTHON_DIR
 make
 make install
 
-wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | $INSTALL_DIR/bin/python
-wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py -O - | $INSTALL_DIR/bin/python
-
-$INSTALL_DIR/bin/pip install virtualenv
+wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | $INSTALL_DIR/bin/python3
+wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py -O - | $INSTALL_DIR/bin/python3
 
 mkdir -p $HOME/bin
 cd $HOME/bin
-ln -sf ../python/bin/python ./
+ln -sf ../python3/bin/python3 ./
+ln -sf ../python3/bin/pip3 ./

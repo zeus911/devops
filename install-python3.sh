@@ -4,7 +4,7 @@ if [ $# -gt 0 ]
 then
   VERSION=$1
 else
-  VERSION=3.3.5
+  VERSION=3.4.0
 fi
 PYTHON_SRC=Python-$VERSION.tgz
 PYTHON_DIR=${PYTHON_SRC%.tgz}

@@ -7,7 +7,7 @@ if [ $# -gt 0 ]
 then
   VERSION=$1
 else
-  VERSION=2.4.8
+  VERSION=2.6.1
 fi
 MONGODB_SRC=mongodb-linux-x86_64-$VERSION.tgz
 MONGODB_DIR=${MONGODB_SRC%.tgz}

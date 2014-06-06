@@ -5,12 +5,7 @@ sed -i "s/^\(exclude=*\)/#\1/" /etc/yum.conf
 
 # install packages
 yum -y groupinstall "Development tools"
-yum -y install sysstat nc wget telnet
-
-# config 163's yum repo
-#mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
-#cd /etc/yum.repos.d/ && wget http://mirrors.163.com/.help/CentOS6-Base-163.repo && mv CentOS6-Base-163.repo CentOS-Base.repo
-#yum clean all && yum clean metadata && yum clean dbcache && yum makecache
+yum -y install sysstat nc wget telnet libtiff-devel libjpeg-devel libzip-devel freetype-devel lcms2-devel libwebp-devel tcl-devel tk-devel
 
 # disable selinux
 #sed -i '/SELINUX/s/enforcing/disabled/' /etc/selinux/config
@@ -27,14 +22,7 @@ sed -i "/# End of file/i\\* hard nproc 32000" /etc/security/limits.conf
 sed -i "s/^\(*          soft    nproc     1024\)/#\1/" /etc/security/limits.d/90-nproc.conf
 
 # config system params
-sysctl vm.overcommit_memory=1
 sed -i '$a \\nvm.overcommit_memory=1' /etc/sysctl.conf
-sed -i '$a \\nnet.netfilter.nf_conntrack_max=131072' /etc/sysctl.conf
-sed -i '$a \\nnet.netfilter.nf_conntrack_tcp_timeout_established=300' /etc/sysctl.conf
-sed -i '$a \\nnet.netfilter.nf_conntrack_tcp_timeout_time_wait=120' /etc/sysctl.conf
-sed -i '$a \\nnet.netfilter.nf_conntrack_tcp_timeout_close_wait=60' /etc/sysctl.conf
-sed -i '$a \\nnet.netfilter.nf_conntrack_tcp_timeout_fin_wait=120' /etc/sysctl.conf
-sed -i '$a \\nnet.ipv4.ip_local_port_range=10000 61000' /etc/sysctl.conf
 /sbin/sysctl -p
 
 # config time synchronization
